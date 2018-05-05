@@ -28,7 +28,7 @@ stage ('build deploy') {
       cp -r /var/lib/jenkins/go-depen-pkg/vendor/src/*  vendor/ 
       
       cd $WORKSPACE/src/github.com/jingyan/adonis
-      go build -ldflags  -i -o edz-adonis .
+      go build  -o edz-adonis .
       zip -j edz-${JOB_NAME}.zip edz-adonis
 
      
