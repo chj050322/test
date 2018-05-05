@@ -17,7 +17,7 @@ stage ('build deploy') {
            
       sh """
 
-      export WORKSPACE=/var/lib/jenkins/workspace
+      
       export GOPATH=$WORKSPACE
       mkdir -p $WORKSPACE/bin
       export GOBIN=$WORKSPACE/bin
