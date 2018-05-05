@@ -37,8 +37,9 @@ stage ('build deploy') {
 	  cp -r config   /home/jenkins/run
 		
 	  cd  /home/jenkins/run
-	  nohup  ./adonis  >>../log/adonis.log 2>&1 &
-     
+	  nohup  /home/jenkins/run/adonis  >>/home/jenkins/log/adonis.log 2>&1 &
+		
+     systemctl restart  adonis
       """
        
     
