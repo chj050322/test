@@ -22,9 +22,9 @@ stage ('build deploy') {
       mkdir -p $WORKSPACE/bin
       export GOBIN=$WORKSPACE/bin
 
-      cd $WORKSPACE/src/github.com/jingyan/
+      cd $WORKSPACE/src/github.com/jingyan/adonis
       mkdir -p vendor
-      rm -rf vendor/* 2>/dev/null
+      rm -rf vendor 2>/dev/null
       cp -r /var/lib/jenkins/go-depen-pkg vendor 
       
       cd $WORKSPACE/src/github.com/jingyan/adonis
