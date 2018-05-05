@@ -26,10 +26,6 @@ stage ('build deploy') {
       cd $WORKSPACE/src/github.com/jingyan/${JOB_NAME}
       go build -ldflags  -i -o edz-$JOB_NAME .
       zip -j edz-${JOB_NAME}.zip edz-${JOB_NAME}
-
-      
-       
+ 
     }
-
-    
 }
