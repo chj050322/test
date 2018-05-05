@@ -39,7 +39,7 @@ stage ('build deploy') {
 	  cd  /home/jenkins/run
 	  nohup  /home/jenkins/run/edz-adonis  >>/home/jenkins/log/edz-adonis.log 2>&1 &
 		
-     systemctl restart  adonis
+     
       """
        
     
