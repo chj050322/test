@@ -17,7 +17,7 @@ stage ('build deploy') {
            
       sh """
 
-      
+      #!/bin/bash -ilex
       export GOPATH=$WORKSPACE
       mkdir -p $WORKSPACE/bin
       export GOBIN=$WORKSPACE/bin
