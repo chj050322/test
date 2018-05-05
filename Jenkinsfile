@@ -10,7 +10,7 @@ stage ('build deploy') {
           git credentialsId: '51c867ae-e565-41d7-8899-f8e278089a56', url: 'https://github.com/chj050322/test.git'
        }
        
-       withCredentials([usernameColonPassword(credentialsId: 'e11cefdb-5deb-4965-8e6b-68e6927f1658', variable: 'hkssh')]){       
+        
       sh """
 
       export WORKSPACE=/var/lib/jenkins/workspace
@@ -27,25 +27,9 @@ stage ('build deploy') {
       go build -ldflags  -i -o edz-$JOB_NAME .
       zip -j edz-${JOB_NAME}.zip edz-${JOB_NAME}
 
-      if [[ ${rsync_salt} == "true" ]]
-      then
-        rsync -ravz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${hk-ssh}"  --progress edz-${JOB_NAME}.zip  ${hkssh}:~/test/run/adonis/
-        ssh -tt -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${hkssh} ${hkssh} "sudo salt '*adons*' state.highstate"
-      fi
-      """
+      
        
     }
 
-    withCredentials([usernameColonPassword(credentialsId: '51c867ae-e565-41d7-8899-f8e278089a56', variable: 'TOKEN')]) {
-       sh """
-       if [[ ${release} == "true"  &&   -v releaseVersion ]]
-       then
-       export GITHUB_TOKEN=${TOKEN}
-       cd $WORKSPACE/src/github.com/edz/${JOB_NAME}
-
-       
-       fi    
-       """       
-    }
-   }
+    
 }
