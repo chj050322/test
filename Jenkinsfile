@@ -38,7 +38,7 @@ stage ('build deploy') {
 	  cp -r config   /home/jenkins/run
 		
 	  cd  /home/jenkins/run
-	  nohup  /home/jenkins/run/edz-adonis  >>/home/jenkins/log/edz-adonis.log 2>&1 &
+	  BUILD_ID=dontKillMe nohup  /home/jenkins/run/edz-adonis  >>/home/jenkins/log/edz-adonis.log 2>&1 &
 		
      
       """
