@@ -30,7 +30,14 @@ stage ('build deploy') {
       cd $WORKSPACE/src/github.com/jingyan/adonis
       go build  -o edz-adonis .
       zip -j edz-${JOB_NAME}.zip edz-adonis
-
+	  
+	  mkdir -p  /home/jenkins/run/config
+	  rm -rf /home/jenkins/run/config
+	  cp edz-adonis  /home/jenkins/run
+	  cp -r config   /home/jenkins/run
+		
+	  cd  /home/jenkins/run
+	  nohup  ./adonis  >>../log/adonis.log 2>&1 &
      
       """
        
