@@ -10,7 +10,7 @@ stage ('build deploy') {
           git credentialsId: '51c867ae-e565-41d7-8899-f8e278089a56', url: 'https://github.com/chj050322/test.git'
        }
        
-       withCredentials([usernameColonPassword(credentialsId: 'e11cefdb-5deb-4965-8e6b-68e6927f1658', variable: 'hk-ssh')]){       
+       withCredentials([usernameColonPassword(credentialsId: 'e11cefdb-5deb-4965-8e6b-68e6927f1658', variable: 'hkssh')]){       
       sh """
 
       export WORKSPACE=/var/lib/jenkins/workspace
@@ -29,8 +29,8 @@ stage ('build deploy') {
 
       if [[ ${rsync_salt} == "true" ]]
       then
-        rsync -ravz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${hk-ssh}"  --progress edz-${JOB_NAME}.zip  ${hk-ssh}:~/test/run/adonis/
-        ssh -tt -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${hk-ssh} ${hk-ssh} "sudo salt '*adons*' state.highstate"
+        rsync -ravz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${hk-ssh}"  --progress edz-${JOB_NAME}.zip  ${hkssh}:~/test/run/adonis/
+        ssh -tt -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${hkssh} ${hkssh} "sudo salt '*adons*' state.highstate"
       fi
       """
        
