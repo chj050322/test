@@ -19,6 +19,7 @@ stage ('build deploy') {
 
       source /etc/profile
       export GOPATH=$WORKSPACE
+	  export BUILD_ID=DONTKILLME
       mkdir -p $WORKSPACE/bin
       export GOBIN=$WORKSPACE/bin
 
