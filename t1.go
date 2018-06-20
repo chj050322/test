@@ -1,6 +1,6 @@
 package main
 
-import "github.com/astaxie/beego"
+import "fmt"
 
 var (
 	G_BUILD_TIME string
@@ -8,7 +8,7 @@ var (
 )
 
 func main() {
-	beego.Run()
+	fmt.Printf("%s, %s\n", G_BUILD_TIME, G_GIT_HASH)
 
 }
 
